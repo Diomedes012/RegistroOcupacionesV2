@@ -25,4 +25,7 @@ interface OcupacionDao {
 
     @Query(value = "SELECT EXISTS(SELECT 1 FROM ocupaciones WHERE ocupacionId = :id)")
     suspend fun exists(id: Int): Boolean
+
+    @Query(value = "SELECT EXISTS(SELECT 1 FROM ocupaciones WHERE descripcion = :descripcion)")
+    suspend fun existsByDescripcion(descripcion: String): Boolean
 }
