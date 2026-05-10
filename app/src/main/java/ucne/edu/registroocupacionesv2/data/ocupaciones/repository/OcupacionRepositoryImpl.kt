@@ -1,12 +1,12 @@
-package ucne.edu.registroocupacionesv2.data.tareas.repository
+package ucne.edu.registroocupacionesv2.data.ocupaciones.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import ucne.edu.registroocupacionesv2.data.tareas.local.OcupacionDao
-import ucne.edu.registroocupacionesv2.data.tareas.mapper.toDomain
-import ucne.edu.registroocupacionesv2.data.tareas.mapper.toEntity
-import ucne.edu.registroocupacionesv2.domain.tareas.model.Ocupacion
-import ucne.edu.registroocupacionesv2.domain.tareas.repository.OcupacionRepository
+import ucne.edu.registroocupacionesv2.data.ocupaciones.local.OcupacionDao
+import ucne.edu.registroocupacionesv2.data.ocupaciones.mapper.toDomain
+import ucne.edu.registroocupacionesv2.data.ocupaciones.mapper.toEntity
+import ucne.edu.registroocupacionesv2.domain.ocupaciones.model.Ocupacion
+import ucne.edu.registroocupacionesv2.domain.ocupaciones.repository.OcupacionRepository
 import javax.inject.Inject
 
 class OcupacionRepositoryImpl @Inject constructor(private val localDataSource: OcupacionDao): OcupacionRepository{
