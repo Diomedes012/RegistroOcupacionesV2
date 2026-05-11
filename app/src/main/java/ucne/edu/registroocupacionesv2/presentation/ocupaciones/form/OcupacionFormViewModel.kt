@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import ucne.edu.registroocupacionesv2.domain.ocupaciones.model.Ocupacion
 import ucne.edu.registroocupacionesv2.domain.ocupaciones.usecase.UpsertOcupacionUseCase
+import ucne.edu.registroocupacionesv2.presentation.navigation.Screen
 import javax.inject.Inject
 
 @HiltViewModel
