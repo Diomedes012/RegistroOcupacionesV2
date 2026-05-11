@@ -67,4 +67,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+    implementation("androidx.compose.material:material-icons-extended")
 }
