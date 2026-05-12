@@ -18,8 +18,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import ucne.edu.registroocupacionesv2.domain.ocupaciones.model.Ocupacion
+import ucne.edu.registroocupacionesv2.domain.ocupaciones.usecase.ObserveOcupacionUseCase
 import ucne.edu.registroocupacionesv2.domain.ocupaciones.usecase.UpsertOcupacionUseCase
 import ucne.edu.registroocupacionesv2.presentation.navigation.Screen
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,6 +29,7 @@ class OcupacionFormViewModel @Inject constructor(
     private val getOcupacionUseCase: GetOcupacionUseCase,
     private val upsertOcupacionUseCase: UpsertOcupacionUseCase,
     private val deleteOcupacionUseCase: DeleteOcupacionUseCase,
+    private val observeOcupacionUseCase: ObserveOcupacionUseCase,
     savedStateHandle: SavedStateHandle
 ): ViewModel()
 {
@@ -84,7 +87,7 @@ class OcupacionFormViewModel @Inject constructor(
 
     private fun onSave()
     {
-        val descripcion = state.value.descripcion
+        val descripcion = state.value.descripcion.trim()
         val sueldoText = state.value.sueldo
 
         val descripcionValidation = validateDescripcion(descripcion)
@@ -103,6 +106,23 @@ class OcupacionFormViewModel @Inject constructor(
 
         viewModelScope.launch {
             _state.update { it.copy(isSaving = true) }
+
+            val ocupaciones = observeOcupacionUseCase().first()
+
+            val existeDuplicado = ocupaciones.any{
+                it.descripcion.equals(descripcion, ignoreCase = true) && it.ocupacionId != state.value.ocupacionId
+            }
+
+            if(existeDuplicado)
+            {
+                _state.update {
+                    it.copy(
+                        isSaving = false,
+                        descripcionError = "Esta Ocupacion ya Existe"
+                    )
+                }
+                return@launch
+            }
 
             val ocupacion = Ocupacion(
                 ocupacionId = state.value.ocupacionId ?: 0,
