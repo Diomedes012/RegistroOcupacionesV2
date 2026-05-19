@@ -25,7 +25,7 @@ class UpsertEmpleadoUseCaseTest {
     @Test
     fun `invoke guarda empleado con datos validos`() = runTest {
         // Given
-        val empleado = Empleado(0, "15/05/2026", "Samil de la Cruz", "Masculino", 45000.0)
+        val empleado = Empleado(0, "15052026", "Samil de la Cruz", "Masculino", 45000.0)
         coEvery { repository.upsert(empleado) } returns 1
 
         // When
@@ -79,7 +79,7 @@ class UpsertEmpleadoUseCaseTest {
     @Test
     fun `invoke propaga errores del repositorio`() = runTest {
         // Given
-        val empleado = Empleado(1, "10/01/2026", "Maria", "Femenino", 50000.0)
+        val empleado = Empleado(1, "10012026", "Maria", "Femenino", 50000.0)
         coEvery { repository.upsert(empleado) } throws Exception("Fallo de conexión SQLite")
 
         // When

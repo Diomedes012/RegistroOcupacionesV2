@@ -97,8 +97,8 @@ class EmpleadoRepositoryImplTest {
     fun `observeEmpleados retorna flow de empleados`() = runTest {
         // Given
         val listaMock = listOf(
-            EmpleadoEntity(1, "10/02/2026", "Ana Martinez", "Femenino", 35000.0),
-            EmpleadoEntity(2, "12/03/2026", "Luis Perez", "Masculino", 42000.0)
+            EmpleadoEntity(1, "10022026", "Ana Martinez", "Femenino", 35000.0),
+            EmpleadoEntity(2, "12032026", "Luis Perez", "Masculino", 42000.0)
         )
         every { dao.observeAll() } returns  flowOf(listaMock)
 
@@ -108,7 +108,7 @@ class EmpleadoRepositoryImplTest {
         // Then
         assertEquals(2, result.size)
         assertEquals("Ana Martinez", result[0].nombres)
-        assertEquals(1, result[0].sexo)
+        assertEquals("Femenino", result[0].sexo)
         assertEquals("Luis Perez", result[1].nombres)
     }
 
