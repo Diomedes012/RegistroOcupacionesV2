@@ -14,7 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import dagger.hilt.android.AndroidEntryPoint
-import ucne.edu.registroocupacionesv2.presentation.navigation.OcupacionNavHost
+import ucne.edu.registroocupacionesv2.presentation.navigation.AppNavHost
+import ucne.edu.registroocupacionesv2.presentation.navigation.MainScreen
 import ucne.edu.registroocupacionesv2.ui.theme.RegistroOcupacionesV2Theme
 
 @AndroidEntryPoint
@@ -28,8 +29,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
-                    OcupacionNavHost()
+                    MainScreen()
                 }
             }
         }
