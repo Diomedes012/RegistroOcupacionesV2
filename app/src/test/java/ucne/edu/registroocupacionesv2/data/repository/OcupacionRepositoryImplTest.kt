@@ -92,6 +92,7 @@ class OcupacionRepositoryImplTest {
     fun `getOcupacion retorna ocupacion por id`() = runTest {
         //Given
         val entidad = OcupacionEntity(1, "Abogado", 45000.0)
+        coEvery { dao.getById(1) } returns entidad
 
         //When
         val result = repository.getOCupacion(1)
